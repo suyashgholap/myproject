@@ -1,0 +1,14 @@
+
+main .banner .banner-img img{
+    height: 11rem;
+    width: 100%;
+}
+main .banner .banner-img {
+    text-align: center;
+    padding-top: 1rem;
+
+}
+main .banner .banner-img h3{
+    font-family: var(--Lexend);
+    font-size: 2rem !important;
+}

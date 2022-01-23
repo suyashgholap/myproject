@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doing Everything with Computer</title>
+  <link rel="icon" href="./assets/fav-circle.png">
+  <link rel="stylesheet" href="./css/all.css">
+  <link rel="stylesheet" href="./css/owl.carousel.min.css">
+  <link rel="stylesheet" href="./css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="./css/aos.css">
+  <link rel="stylesheet" href="./css/blog.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-menu flex-row">
+      <div class="nav-brand">
+        <a href="index.html" class="text-gray">Ready4Blogs</a>
+      </div>
+      <div class="toggle-collapse">
+        <div class="toggle-icons">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+      <div>
+        <ul class="nav-items">
+          <li class="nav-link">
+            <a href="index.html">Home</a>
+          </li>
+          <li class="nav-link">
+            <a href="categories.html">Categories</a>
+          </li>
+          <li class="nav-link">
+            <a href="pages.html">Pages</a>
+          </li>
+          <li class="nav-link">
+            <a href="archives.html">Archives</a>
+          </li>
+          <li class="nav-link">
+            <a href="contact.html">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+      <div class="social text-gray">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <section class="blog-front">
+      <div class="banner">
+        <img src="./assets/banner.jpg" height="200px" width="100%" alt="">
+      </div>
+    </section>
+    <section class="container">
+      <div class="site-content">
+        <div class="blog1">
+          <div class="blog1title">
+            <h2>Doing Everything with Computer</h2>
+          </div>
+          <div class="blog1content">
+            <h4>Partitioning for RAID in a dual boot environment</h4>
+            <p> &emsp;&emsp;&emsp;Previously, for my developer/gaming rig, I had a setup with one barely functioning 1TB HDD and a small SSD (128GB) or
+               something. I also had a server with another 1TB HDD, a DNS321 with 2x1TB HDD in a RAID1, and a USB3.0 HDD enclosure
+                with a 1TB HDD in it. I also had many HDDs just sitting around from when I last used RAID more often.
+            </p>
+            <p>I did an inventory of the drives available:</p>
+            <ul>
+              <li>6 * 1 TB WD Blue</li>
+              <li>3 * 1 TB WD Black</li>
+              <li>2 * 1 TB WD Grren</li>
+              <li>2x Seagate Barracuda</li>
+              <li>1 * 128 GB SSD</li>
+            </ul>
+            <h5>The New Setup</h5>
+            <p>&emsp;&emsp;&emsp;The DNS321 works well enough, but its getting quite slow as it's showing its age. 
+              I like that I can run Linux on it, and its good enough for sync'd backups of pictures and such, but 
+              not for things like streaming videos via plex. After some benchmarking, it appears to top out at about 
+              15Mbps which is annoying.
+            </p>
+            <p>In comparison, the USB 3.0 HDD enclosure achieved around 150MB/sec read (1200Mbps) and 130MB/sec 
+              write (1040Mbps).
+            </p>
+            <img src="./assets/blog/blog1i1.png"  data-aos="fade-left" data-aos-delay="100" width="100%" alt="">
+            <p>&emsp;&emsp;&emsp;I decided since I have so many drives, I'd pickup a cheap modern RAID enclosure and opted for a 5-bay Yottamaster:
+               https://www.amazon.com/Yottamaster-Aluminum-Enclosure-Support-Silver/dp/B071ZP2HFK to stick the WD Blues inside 
+               using a RAID5 setup.    
+            </p>
+            <img src="./assets/blog/blog1i2.jpg" data-aos="fade-left" data-aos-delay="100" width="50%" alt="">
+            <p>&emsp;&emsp;&emsp;I also decided to upgrade to a larger SSD, since I dual boot Windows and Linux and wanted to split the faster drive
+               throughput between the two and 128GB is not enough, so I got a WD green 1TB SSD (with throughput of ~500MB/sec = 4000 Mbps).
+            </p>
+            <h5>Computer 1: developer / gaming</h5>
+            <p>&emsp;&emsp;&emsp;On this computer, I was going to use the 3X 1TB WD Black for slower storage and then split the 1TB WD Green SSD 
+              between windows and linux. I wanted to use the 3X 1TB in a software raid on each OS (The motherboard I have doesn't seem to support 
+              RAID directly). Each HDD and the SSD were essentially going to be split in half and then a partition made for each OS since it was going 
+              to be dual boot.
+            </p>
+            <h5>Computer 2: server</h5>
+            <p>&emsp;&emsp;&emsp;On this computer, I was installing Ubuntu 20.04 server, and using mdadm for a software RAID1 with the 2x Barradcudas
+               for the /home partition. I was also going to take the 128GB SSD and use it for the root directory so that things booted and loaded faster.
+                This was all fairly easy to do since the server version of the Ubuntu 20.04 installer includes mdadm and has a GUI for setting it up.
+                If you need a guide, this one looks similar to what I did: <a href="https://gist.github.com/fevangelou/2f7aa0d9b5cb42d783302727665bf80a">Click Here</a>
+            </p>
+            <h5>Windows 10 / Ubuntu 20.10</h5>
+            <p>&emsp;&emsp;&emsp;This was more of a beast to do. Generally I've found with dual booting, it works best if you install windows 10 first, 
+              then install Ubuntu because otherwise Windows may clobber Grub (The Linux bootloader which also detects and chain-loads the Windows bootloader).
+            </p>
+            <img src="./assets/blog/blog1i3.png" data-aos="fade-left" data-aos-delay="100" width="100%" alt="">
+            <h5>Some things I learned :</h5>
+            <ol>
+              <li>Make sure you have the default boot drive selected to the SSD (and not one of the RAID drives, or else Windows will install its 
+                bootloader to one of the RAID drives which will then get clobbered later)
+              </li>
+              <li>
+                Windows can't create a mirrored volume with more than one disk in the disk utility tool. It also can't do this with a
+                 simple disk (it needs to use a dynamic disk, which apparently Linux can't read - this makes it difficult to have a RAID on both OS's)
+              </li>
+              <li>
+                There is a thing called Storage Spaces on Windows, but it is made for full disks, not partitions, again making it difficult
+              </li>
+              <li>
+                You can "attach" virtual disks VDH's to the Disk Utility and they will show up as full disks which you can then use to make a Storage Space which performs mirroring / striping.
+              </li>
+              <li>
+                The attaching of VDH's is not persistent, but you can create startup tasks to do so.
+              </li>
+            </ol>
+            <h5>How I made it work:</h5>
+            <ol>
+              <li>
+                Wipe all the partitions on all the disks with Ubuntu live usb to start
+              </li>
+              <li>
+                Set default BIOS boot disk to SSD
+              </li>
+              <li>
+                Install windows to the SSD using only half of the disk.
+              </li>
+              <li>
+                Install ubuntu 20.10 to the other half of the SSD
+              </li>
+              <li>
+                Make sure windows still boots
+              </li>
+              <li>
+                Boot back into ubuntu. Install mdadm. Create a partition on each HDD taking half of 
+                the space. Set the type of the partition to linux RAID.
+              </li>
+              <li>
+                Create the raid1 array (https://www.linuxbabe.com/linux-server/linux-software-raid-1-setup): 
+                sudo mdadm --create --verbose /dev/md0 --level=1 --raid-devices=3 /dev/sda1 /dev/sdb1 /dev/sdd1
+                 (my SSD was /dev/sdc. Also note that I'm using the partitions, not the entire disks).
+              </li>
+              <li>
+                Create the mdadm config file, update initramfs: sudo mdadm –details –scan | 
+                sudo tee –a /etc/mdadm/mdadm.conf sudo update-initramfs -u
+              </li>
+              <li>
+                Add the RAID to the fstab: /dev/md0 /home ext4 defaults,nofail,discard 0 0 (first I temp mounted 
+                it to /mnt/md0 and then copied the existing /home over to it, unmounted it and rebooted and it was good)
+              </li>
+              <li>
+                Booted into windows, created a simple volume on the other half of each HDD. I set the letter of each drive to the
+                 ends of the alphabet so I wouldn't get confused.
+              </li>
+              <li>
+                In the disk utility, create VHD for each drive, save it on the drive, set it to dynamically grow (the other one is too slow). 
+                After these are created, they will be attached so they will show up in the Storage Spaces.
+              </li>
+              <li>
+                Followed this guide to automount the VHDs <a href="https://winaero.com/automatically-mount-vhd-or-vhdx-file-on-startup-in-windows-10/">Click Here</a>
+              </li>
+            </ol>
+            <img src="./assets/blog/blog1i4.png" data-aos="fade-left" data-aos-delay="100" width="100%" alt="">
+            <p>(the resulting windows drives: c: is the partition on the SSD, d: is the storage set, e: is a usb hdd, x,y,z are the partitions on the raid disks.
+              (one of the raid disks as seen in the linux partitioner, 1st 500GB is for linux raid, second is for windows storage spaces).
+               (the ssd disk from linux showing the windows partition + windows boot partition, the EFI boot partition and the linux partition. The only two I created were the two large partitions, the rest were created by the installers)
+            </p>
+          </div>
+        </div>
+        <aside class="sidebar">
+          <div class="category">
+            <h2>Category</h2>
+            <ul class="category-list">
+              <li class="list-items" data-aos="fade-left" data-aos-delay="100">
+                <a href="cat-software.html">Software</a>
+                <span>(05)</span>
+              </li>
+              <li class="list-items" data-aos="fade-left" data-aos-delay="200">
+                <a href="cat-hardware.html">Hardware</a>
+                <span>(02)</span>
+              </li>
+              <li class="list-items" data-aos="fade-left" data-aos-delay="300">
+                <a href="cat-languages.html">Languages</a>
+                <span>(09)</span>
+              </li>
+              <li class="list-items" data-aos="fade-left" data-aos-delay="400">
+                <a href="cat-ai.html">AI</a>
+                <span>(07)</span>
+              </li>
+              <li class="list-items" data-aos="fade-left" data-aos-delay="500">
+                <a href="cat-web.html">Web Development</a>
+                <span>(11)</span>
+              </li>
+            </ul>
+          </div>
+          <div class="popular-posts">
+            <h2>Popular Post</h2>
+            <div class="post-content" data-aos="flip-up" data-aos-delay="200">
+              <div class="post-image">
+                <div>
+                  <img src="./assets/popular-post/mpost1.jpg" class="img" alt="PP 1">
+                </div>
+                <div class="post-info flex-row">
+                  <span><i class="fas fa-calendar-day text-gray"></i>&nbsp;&nbsp;May 20, 2021</span>
+                  <span>2 Comments</span>
+                </div>
+              </div>
+              <div class="post-title">
+                <a href="blog3.html" class="text-gray">Where Programmer Can get a Job ?</a>
+              </div>
+            </div>
+            <div class="post-content" data-aos="flip-up" data-aos-delay="300">
+              <div class="post-image">
+                <div>
+                  <img src="./assets/popular-post/mpost2.jpg" class="img" alt="PP 1">
+                </div>
+                <div class="post-info flex-row">
+                  <span><i class="fas fa-calendar-day text-gray"></i>&nbsp;&nbsp;May 20, 2021</span>
+                  <span>2 Comments</span>
+                </div>
+              </div>
+              <div class="post-title">
+                <a href="#" class="text-gray">Is Macbooks are Really Good for Programming ?</a>
+              </div>
+            </div>
+            <div class="post-content" data-aos="flip-up" data-aos-delay="400">
+              <div class="post-image">
+                <div>
+                  <img src="./assets/popular-post/mpost3.png" class="img" alt="PP 1">
+                </div>
+                <div class="post-info flex-row">
+                  <span><i class="fas fa-calendar-day text-gray"></i>&nbsp;&nbsp;May 20, 2021</span>
+                  <span>2 Comments</span>
+                </div>
+              </div>
+              <div class="post-title">
+                <a href="#" class="text-gray">The Best Open Source OS</a>
+              </div>
+            </div>
+            <div class="post-content" data-aos="flip-up" data-aos-delay="500">
+              <div class="post-image">
+                <div>
+                  <img src="./assets/popular-post/mpost4.png" class="img" alt="PP 1">
+                </div>
+                <div class="post-info flex-row">
+                  <span><i class="fas fa-calendar-day text-gray"></i>&nbsp;&nbsp;May 20, 2021</span>
+                  <span>2 Comments</span>
+                </div>
+              </div>
+              <div class="post-title">
+                <a href="#" class="text-gray">Now Lets Develop Back-End of Our Website</a>
+              </div>
+            </div>
+            <div class="post-content" data-aos="flip-up" data-aos-delay="600">
+              <div class="post-image">
+                <div>
+                  <img src="./assets/popular-post/mpost5.png" class="img" alt="PP 1">
+                </div>
+                <div class="post-info flex-row">
+                  <span><i class="fas fa-calendar-day text-gray"></i>&nbsp;&nbsp;May 20, 2021</span>
+                  <span>2 Comments</span>
+                </div>
+              </div>
+              <div class="post-title">
+                <a href="#" class="text-gray">Did you Know! If your a college student you get Microst Azure Free for 1 Year</a>
+              </div>
+            </div>
+          </div>
+          <div class="newsletter" data-aos="fade-up" data-aos-delay="300">
+            <h2>Newsletter</h2>
+            <div class="form-element">
+              <input type="text" class="input-element" placeholder="Email">
+              <button class="btn form-btn">Subscribe</button>
+            </div>
+          </div>
+          <div class="popular-tags">
+            <h2>Popular Tags</h2>
+            <div class="tags flex-row">
+              <span class="tag" data-aos="flip-up" data-aos-delay="100">Unix</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="150">Programming</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="200">Python</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="250">C</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="300">C++</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="350">C#</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="400">HTML5</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="450">CSS3</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="500">AI</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="550">React</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="600">PHP</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="650">Cyber Security</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="700">Cloud Computing</span>
+              <span class="tag" data-aos="flip-up" data-aos-delay="750">Machine Learning</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="about-us" data-aos="fade-right" data-aos-delay="200">
+        <h2>About Us</h2>
+        <p>My Name is Suyash Gholap. This is My Project for Choice Based Subject Web Development using
+          HTML, CSS & JavaScript on Blogging. you can visit my real website <a href="https://ready4blogs.com">Ready4Blogs</a>  
+        </p>
+      </div>
+      <div class="newsletter" data-aos="fade-right" data-aos-delay="200">
+        <h2>Newsletter</h2>
+        <p>Stay Updated with Us</p>
+        <div class="form-element">
+          <input type="text" placeholder="Email"><span><i class="fas fa-chevron-right"></i></span>
+        </div>
+      </div>
+      <div class="instagram" data-aos="fade-left" data-aos-delay="200">
+        <h2>Instagram</h2>
+        <div class="flex-row">
+          <img src="./assets/instagram/thumb-card3.png" alt="">
+          <img src="./assets/instagram/thumb-card4.png" alt="">
+          <img src="./assets/instagram/thumb-card5.png" alt="">          
+        </div>
+        <div class="flex-row">
+          <img src="./assets/instagram/thumb-card6.png" alt="">
+          <img src="./assets/instagram/thumb-card7.png" alt="">
+          <img src="./assets/instagram/thumb-card8.png" alt="">
+        </div>
+      </div>
+      <div class="follow" data-aos="fade-left" data-aos-delay="200">
+        <h2>Follow Us</h2>
+        <p>Follow Us On</p>
+        <div>
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+    </div>
+    <div class="rights flex-row">
+      <h4 class="text-gray">
+        Copyright ©2021 All rights reserved | made by
+        <a href="https://ready4blogs.com/" target="_blank">Suyash Gholap</a>
+      </h4>
+    </div>
+    <div class="move-up">
+      <span><i class="fas fa-arrow-circle-up fa-2x"></i></span>
+    </div>
+  </footer>
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/owl.carousel.min.js"></script>
+  <script src="./js/aos.js"></script>
+  <script src="js/main.js"></script>
+  </body>
+</html>

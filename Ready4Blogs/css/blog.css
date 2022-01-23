@@ -1,0 +1,31 @@
+@import url('../css/fonts.css');
+.site-content .blog1 .blog1title h2{
+    text-align: center;
+    font-size: 2rem;
+}
+.site-content .blog1 .blog1content{
+    padding: 2rem 4rem;
+}
+.site-content .blog1 .blog1content h4{
+    text-align: center;
+    font-size: 1.5rem;
+}
+.site-content .blog1 .blog1content h5{
+    font-size: 1.3rem;
+}
+.site-content .blog1 .blog1content p{
+    line-height: 2rem;
+}
+.site-content .blog1 .blog1content ul{
+    line-height: 2rem;
+    font-family: Lexend;
+}
+.site-content .blog1 .blog1content img{
+    margin: 0 auto;
+    text-align: center;
+    padding: 1rem;
+}
+.site-content .blog1 .blog1content ol{
+    line-height: 1.5rem;
+    font-family: Lexend;
+}
